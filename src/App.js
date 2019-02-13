@@ -39,11 +39,12 @@ deletePersonHandler = (personIndex) => {
   render() {
     
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
     };
 
     let persons = null;
@@ -61,17 +62,26 @@ deletePersonHandler = (personIndex) => {
           })}
       </div> 
       );
-    }
+      style.backgroundColor= 'red';
 
+
+    }
+    let classes = [];
+    if (this.state.persons.length <= 2) {
+      classes.push('red');
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push('bold');
+    }
     return (
-      <div className="App">
-        <h1>React App</h1>
-        <p>Yep. it's a react app...</p>
-        <button
-        style={style}
-        onClick={this.togglePersonsHandler}>Change Name</button>
-        {persons}
-      </div>
+        <div className="App">
+          <h1>React App</h1>
+          <p className= {classes.join(' ')}>Yep. it's a react app...</p>
+          <button
+          style={style}
+          onClick={this.togglePersonsHandler}>Change Name</button>
+          {persons}
+        </div>
     );
     //return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Reacted'))
   }
